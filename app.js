@@ -43,7 +43,6 @@ fs.stat('./avatars', function(err, stats){
 
   } else if (err.errno === -4058 || err.errno === -2) {
     //errno seems to changed based on windows(-4058) vs OSX(-2)???
-    
     fs.mkdirSync('./avatars');
     parseGithubData(username, repo, getURLArray);
 
