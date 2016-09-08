@@ -12,6 +12,13 @@ var options = {
   }
 };
 
+var userValidationOptions = {
+  url: 'https://api.github.com/users/' + username,
+  headers: {
+    'User-Agent': 'Swoodend'
+  }
+};
+
 function parseGithubData(username, repo, callback){
   request(options, function(err, res, body){
     var dataObj = JSON.parse(body);
@@ -35,11 +42,17 @@ function streamToDir(urlArray, directory){
 
 };
 
+function validateUsername(username){
+  request(userValidationOptions, function(err, res, body){
+    return res.statusCode;
+  });
+}
 
 fs.stat('./avatars', function(err, stats){
   if (stats && !err){
 
-    parseGithubData(username, repo, getURLArray);
+    var statusCode = validateUsername();
+    (statusCode === 200) ? parseGithubData(username, repo, getURLArray) : console.log('Bad username');
 
   } else if (err.errno === -4058 || err.errno === -2) {
     //errno seems to changed based on windows(-4058) vs OSX(-2)???
