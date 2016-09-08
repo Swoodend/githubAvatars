@@ -53,13 +53,13 @@ function streamToDir(urlArray, directory){
 
 function validateUsername(callback){
   request(userValidationOptions, function(err, res, body){
-    (res.statusCode === 200) ? callback() : console.log('bad username');
+    (res.statusCode === 200) ? callback(runMain) : console.log('bad username');
   })
 }
 
-function validateRepo(){
+function validateRepo(callback){
   request(repoValidationOptions, function(err, res, body){
-    (res.statusCode === 200) ? runMain() : console.log('bad repo name');
+    (res.statusCode === 200) ? callback() : console.log('bad repo name');
   });
 }
 
