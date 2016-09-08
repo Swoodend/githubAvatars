@@ -27,6 +27,7 @@ var repoValidationOptions = {
   }
 };
 
+
 function parseGithubData(username, repo, callback){
   request(options, function(err, res, body){
     var dataObj = JSON.parse(body);
@@ -69,7 +70,6 @@ function runMain(){
 
 fs.stat('./avatars', function(err, stats){
   if (stats && !err){
-    console.log('got in here');
     validateUsername(validateRepo);
   } else if (err.errno === -4058 || err.errno === -2) {
     //errno seems to changed based on windows(-4058) vs OSX(-2)???
