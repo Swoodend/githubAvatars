@@ -41,6 +41,7 @@ function getURLArray(obj){
   for (var i = 0; i < obj.length; i++){
     URLS.push(obj[i].avatar_url);
   }
+  
   streamToDir(URLS, options.url);
 };
 
