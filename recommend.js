@@ -2,6 +2,7 @@ var request = require('request');
 
 var user = process.argv[2];
 var repo = process.argv[3];
+var filterNum = process.argv[4];
 
 var contributorsHeader = {
   url: 'https://api.github.com/repos/' + user + '/' + repo + '/contributors',
@@ -74,11 +75,30 @@ function getStarredRepos(usernames){
   };
 };
 
-function sortByStars(starData){
+function sortNumStars(repoStarsData, i){
+  return new Promise(function (resolve, reject){
+    
+  });
+}
 
-};
+
 function collectTopFive(repoStarsData){
-  // This is going to have to be split into a seperate function which returns a promise.
+  var arr =[];
+
+  for (var i = 0; i < repoStarsData.length; i++){
+    repoStarsData.sort(function(a, b){
+      return a.count - b.count;
+    });
+  };
+
+  arr.push(repoStarsData[repoStarsData.length -1])
+  
+  for (var i = arr.length - 1; i >= 0; i--){
+    if(arr[i].count > filterNum){
+      console.log(arr[i]);
+    };
+  };
+
 };
 
 getContributorsInfo(user, repo);
