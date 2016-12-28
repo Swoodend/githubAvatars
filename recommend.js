@@ -8,7 +8,7 @@ var contributorsHeader = {
   url: 'https://api.github.com/repos/' + user + '/' + repo + '/contributors',
   headers: {
     'User-Agent': 'Swoodend',
-    'Authorization': 'token 0ec7adb54087d7dbeacf002638b04e4685f61e3f'
+    'Authorization': 'fofoofofof'
   },
   json: true
 };
